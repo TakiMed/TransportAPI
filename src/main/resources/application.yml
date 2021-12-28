@@ -1,10 +1,10 @@
 spring:
-  datasource:
-    driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/transport?useUnicode=true&characterEncoding=utf8&useSSL=false
-    username: root
-    password: Mulan605.
-    name: MySQL Connection
+  #datasource:
+    #driver-class-name: com.mysql.jdbc.Driver
+    #url: jdbc:mysql://localhost:3306/transport?useUnicode=true&characterEncoding=utf8&useSSL=false
+    #username: root
+    #password: Mulan605.
+    #name: MySQL Connection
   application:
     name: Transport API
 server:

@@ -1,0 +1,17 @@
+services:
+  app-srv:
+    build:
+      context: .
+      dockerfile: app.dockerfile
+    image: "transport/app:srv"
+    ports:
+      - "8000:8000"  # container vs hos port
+    volumes:
+      - ./data/app-config:/config
+    restart: always
+    container_name: transport_app
+    networks:
+      - tatjananet
+
+networks:
+  tatjananet:

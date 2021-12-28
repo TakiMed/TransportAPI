@@ -1,4 +1,4 @@
-package com.transportdemo.project.controllers;
+package com.transportdemo.project.config.controllers;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.transportdemo.project.services.MyService;
@@ -6,10 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 
@@ -17,6 +14,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping(value = "/api", produces = MediaType.APPLICATION_JSON_VALUE)
 public class MyController {
 
@@ -24,7 +22,8 @@ public class MyController {
     private MyService myService;
 
     @GetMapping(value = "/locations")
-    public ResponseEntity<List<String>> getAllLocations(@RequestParam(value = "input") String input) throws JsonProcessingException {
+    public ResponseEntity<List<String>> getAllLocations(@RequestParam(value = "input") String input)
+            throws JsonProcessingException {
         List<String> list = this.myService.retrieveAllLocationNames(input);
         return new ResponseEntity<>(list, HttpStatus.OK);
     }

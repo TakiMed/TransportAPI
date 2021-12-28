@@ -26,7 +26,7 @@ public class MyService {
         List<String> locationList = new ArrayList<>();
         ObjectMapper mapper = new ObjectMapper();
         input = input==null ? "" : input;
-        String url = "https://transport.opendata.ch/v1/locations?query=" + input;
+        String url = "http://transport.opendata.ch/v1/locations?query=" + input;
         String json = restTemplate.getForEntity(url, String.class).getBody();
         JsonNode jsonNode = mapper.readTree(json).get("stations");
         Iterator<JsonNode> iterator = jsonNode.iterator();
