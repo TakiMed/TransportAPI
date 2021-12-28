@@ -1,4 +1,4 @@
-package com.transportdemo.project.config.controllers;
+package com.transportdemo.project.controllers;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.transportdemo.project.services.MyService;
