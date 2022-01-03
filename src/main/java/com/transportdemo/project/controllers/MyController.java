@@ -30,14 +30,9 @@ public class MyController {
 
 
     @GetMapping(value = "/getDuration")
-    public ResponseEntity<Integer> getTimeInSeconds(@RequestParam(value = "from") String from,
-                                                    @RequestParam(value = "to") String to){
-        Integer shortestRouteTime= null;
-        try {
-            shortestRouteTime = this.myService.getTime(from, to);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public ResponseEntity<String> getTimeInSeconds(@RequestParam(value = "from") String from,
+                                                    @RequestParam(value = "to") String to) throws IOException {
+        String shortestRouteTime = this.myService.getTime(from, to);
         return new ResponseEntity<>(shortestRouteTime, HttpStatus.OK);
     }
 }

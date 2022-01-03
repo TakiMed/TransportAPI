@@ -36,20 +36,25 @@ public class MyService {
         return locationList;
     }
 
-    public  Integer getTime(String from, String to) throws IOException {
+    public String getTime(String from, String to) throws IOException {
+        Integer min = Integer.MAX_VALUE;
+        Integer key = 0;
+        Map<Integer, StringBuilder> map = new HashMap<Integer, StringBuilder>();
         String url = "http://transport.opendata.ch/v1/connections?from="+from+"&to="+to;
         ObjectMapper mapper = new ObjectMapper();
         StringBuilder str = new StringBuilder(); //mutable
         String json = restTemplate.getForEntity(url, String.class).getBody();
         JsonNode jsonNode = mapper.readTree(json).get("connections");
         Iterator<JsonNode> iterator = jsonNode.iterator();
-        Integer min = Integer.MAX_VALUE;
+
         while (iterator.hasNext()){
             str.append(iterator.next().get("duration").textValue());
-            min = Math.min(min, retrieveTimeFromDurationString(str));
+            key = retrieveTimeFromDurationString(str);
+            map.put(key, str);
+            min = Math.min(min, key);
             str.delete(0,11);
         }
-        return min;
+        return map.get(min).toString();
     }
 
 
